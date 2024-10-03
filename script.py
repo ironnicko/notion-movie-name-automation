@@ -67,7 +67,8 @@ def process_data(json):
 
 
 def get_link(name, platform):
-    req_url = f"https://www.google.com/search?q={'+'.join(name.split())}+{platform}"
+    req_url = f"https://www.google.com/search?q={
+        '+'.join(name.split())}+{platform}"
 
     respsone = requests.get(req_url)
 
@@ -92,11 +93,12 @@ def get_link(name, platform):
 
     return (check_link in link), link
 
+
 print("Starting...")
-data = get_database(database_id)
 
-if data:
-    process_data(data)
-else:
-    print("Failed to fetch the database, please add your integration as connection in your notion database.")
-
+if __name__ == '__main__':
+    data = get_database(database_id)
+    if data:
+        process_data(data)
+    else:
+        print("Failed to fetch the database, please add your integration as connection in your notion database.")
