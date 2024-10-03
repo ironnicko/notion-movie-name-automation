@@ -1,3 +1,4 @@
+from collections import deque
 import requests
 from os import getenv
 from bs4 import BeautifulSoup
@@ -56,11 +57,12 @@ def process_data(json):
             add = 0
             for link in links:
                 add += link[0]
+            links = deque(links)
             if add == 0:
                 continue
-            while links[-1][0] == 0:
-                links.pop()
-            url = links[-1][1]
+            while links[0][0] == 0:
+                links.popleft()
+            url = links[0][1]
 
             # print(netflix_url)
             update_url(page_id, url)
