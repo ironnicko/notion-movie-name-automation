@@ -18,7 +18,7 @@ headers = {
 base_url = "https://api.notion.com/v1"
 
 
-def get_database(database_id):
+def get_database():
 
     req_url = f"{base_url}/databases/{database_id}/query"
 
@@ -64,7 +64,6 @@ def process_data(json):
                 links.popleft()
             url = links[0][1]
 
-            # print(netflix_url)
             update_url(page_id, url)
 
 

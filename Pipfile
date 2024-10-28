@@ -9,6 +9,11 @@ beautifulsoup4 = "*"
 python-dotenv = "*"
 fastapi = "*"
 uvicorn = "*"
+passlib = "*"
+motor = "*"
+python-multipart = "*"
+bcrypt = "*"
+pyjwt = "*"
 
 [dev-packages]
 
