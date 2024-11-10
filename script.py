@@ -93,13 +93,3 @@ def get_link(name, platform):
             break
 
     return (check_link in link), link
-
-
-print("Starting...")
-
-if __name__ == '__main__':
-    data = get_database(database_id)
-    if data:
-        process_data(data)
-    else:
-        print("Failed to fetch the database, please add your integration as connection in your notion database.")

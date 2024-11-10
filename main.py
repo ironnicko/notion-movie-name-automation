@@ -22,12 +22,11 @@ URI = getenv("DB_URI")
 
 client = AsyncIOMotorClient(URI)
 db = client.get_default_database("test")
-collection = client.test.users
+collection = client.test.person
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')
 
 
 class User(BaseModel):
-    id: int
     username: str
     password_hash: str
 
@@ -39,8 +38,6 @@ class User(BaseModel):
         user = None
         if username != None:
             user = await collection.find_one({"username": username})
-        if id != None:
-            user = await collection.find_one({"id": id})
         if user:
             del user['_id']
         return user
@@ -86,13 +83,13 @@ def start():
                 status_code=status.HTTP_400_BAD_REQUEST, detail="Username already exists!")
 
         user_obj = User(**data)
-        await collection.insert_one(data)
+        await collection.insert_one(user_obj.model_dump())
         return HTTPException(status_code=status.HTTP_200_OK, detail="User Successfully Created!")
 
     async def get_current_user(token: str = Depends(oauth2_scheme)):
         try:
             payload = jwt.decode(token, JWT_SECRET, algorithms=['HS256'])
-            user = await User.get(id=payload["id"])
+            user = await User.get(username=payload["username"])
         except:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
@@ -110,7 +107,7 @@ def start():
         return {"Hello": "World"}
 
     @app.post("/")
-    async def check_for_link(User = Depends(get_current_user)):
+    async def check_for_link(User=Depends(get_current_user)):
         print("Running the script...")
         data = get_database()
         process_data(data)
