@@ -7,7 +7,7 @@ __pycache__/
 *.so
 **/.vs
 **/.vscode
-/script.sh
+
 
 # Distribution / packaging
 *tfstate*

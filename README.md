@@ -1,7 +1,5 @@
 # Notion Movie Name Automation
 
-
-
 ## Overview
 
 **Notion Movie Name Automation** is a project that automates the process of fetching movie names from Notion using the Notion API. It utilizes BeautifulSoup4 to scrape movie URLs and serves the results through a FastAPI application. The FastAPI application is hosted on an AWS EC2 instance, which is provisioned using Terraform and configured with Ansible.
@@ -34,14 +32,26 @@ Before you begin, ensure you have the following installed:
 - Ansible
 - AWS CLI (configured with your credentials)
 
+## Environment Variables
+
+TOKEN_ID=
+DATABASE_ID=
+PORT=8000
+JWT_SECRET=
+DB_URI=
+
 ### Installation
+
+**NOTE**
+Make sure to change the --private-key file to point to where your private is located
 
 1. **Clone the repository**:
 
    ```bash
      git clone https://github.com/yourusername/notion-movie-name-automation.git
      cd notion-movie-name-automation
-    ```
+   ```
+
 2. **Create a Python environment using Conda or venv or Pipenv**:
    ```bash
     pipenv install -r requirements.txt
@@ -50,12 +60,15 @@ Before you begin, ensure you have the following installed:
    ```bash
     brew install ansible terraform aws-cli docker docker-desktop
    ```
-4. **Setup your AWS Configuration:**
-  ```bash
-    aws configure
-  ```
-5. **Run script.sh:**
-  ```bash
-    sh script.sh
-  ```
+4. **Setup your AWS Configuration and Ansible-Galaxy module:**
 
+```bash
+  aws configure
+  ansible-galaxy collection install amazon.aws
+```
+
+5. **Run script.sh:**
+
+```bash
+  sh script.sh
+```

@@ -83,7 +83,7 @@ resource "aws_instance" "my_vm" {
   instance_type          = "t4g.nano"
   key_name               = "vockey"
   vpc_security_group_ids = [aws_security_group.main.id]
-  # user_data              = "${file("script.sh")}"
+
 
   tags = {
     Name = "first-tf-instance"
