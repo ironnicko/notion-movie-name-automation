@@ -7,8 +7,11 @@ __pycache__/
 *.so
 **/.vs
 **/.vscode
+/script.sh
 
 # Distribution / packaging
+*tfstate*
+.*
 .Python
 build/
 develop-eggs/

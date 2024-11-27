@@ -1,0 +1,19 @@
+---
+- name: Ansible Test Playbook
+  gather_facts: false
+  hosts: tag_Name_first_tf_instance
+  tasks:
+    - name: Update Packages
+      command: sudo yum update -y
+    - name: Run Shell Command
+      command: sudo yum install docker -y
+    - name: Start Docker Service
+      command: sudo systemctl start docker
+    - name: Pull Docker Image
+      command: sudo docker pull ironnicko1413/notionapp-server:latest
+    - name: Copy ENV file
+      copy:
+        src: ./.env
+        dest: /home/ec2-user
+    - name: Start Container
+      command: sudo docker run -d -p 8000:8000 --env-file ./.env ironnicko1413/notionapp-server:latest
