@@ -33,13 +33,13 @@ Before you begin, ensure you have the following installed:
 - AWS CLI (configured with your credentials)
 
 ## Environment Variables
-
+```
 TOKEN_ID=
 DATABASE_ID=
 PORT=8000
 JWT_SECRET=
 DB_URI=
-
+```
 ### Installation
 
 **NOTE**
