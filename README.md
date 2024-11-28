@@ -43,7 +43,7 @@ DB_URI=
 ### Installation
 
 **NOTE**
-Make sure to change the --private-key file to point to where your private is located
+Make sure to change the ```--private-key``` arguement to point to where your private key is located
 
 1. **Clone the repository**:
 
